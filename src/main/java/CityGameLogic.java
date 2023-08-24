@@ -1,35 +1,19 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class CityGameLogic {
-    private ArrayList<String> cities;
+    private Database database;
     private HashSet<String> usedCities;
     private String lastCity;
 
-    public CityGameLogic() {
-        cities = new ArrayList<>();
-        loadCitiesFromFile();
+    public CityGameLogic(Database database) {
+        this.database = database;
         usedCities = new HashSet<>();
     }
 
-    private void loadCitiesFromFile() {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("cities.txt"), "UTF-8"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                cities.add(line);
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public String makeMove(String input) {
+        List<String> cities = database.getCities();
+
         if (usedCities.contains(input)) {
             return "This city has already been used. Try another city.";
         }

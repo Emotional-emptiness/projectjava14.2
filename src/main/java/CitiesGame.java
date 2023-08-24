@@ -2,6 +2,6 @@ import javax.swing.*;
 
 public class CitiesGame {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new GameFrame());
+        SwingUtilities.invokeLater(() -> new GameFrame(new Database()));
     }
 }

@@ -9,7 +9,7 @@ public class GamePanel extends JPanel {
     private JButton moveButton;
     private CityGameLogic gameLogic;
 
-    public GamePanel() {
+    public GamePanel(Database database) {
         setLayout(new GridLayout(3, 1));
 
         inputField = new JTextField();
@@ -31,6 +31,6 @@ public class GamePanel extends JPanel {
         add(computerLabel);
         add(moveButton);
 
-        gameLogic = new CityGameLogic();
+        gameLogic = new CityGameLogic(database);
     }
 }
